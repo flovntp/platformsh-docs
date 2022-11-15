@@ -30,39 +30,41 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ```php
 <?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+// Install the ConfigReader here: https://github.com/platformsh/config-reader-php
+use Platformsh\ConfigReader\Config;
 
-	// For a relationship named 'influxtimedb' referring to one endpoint.
-	if (!empty($relationships['influxtimedb'])) {
-		foreach ($relationships['influxtimedb'] as $endpoint) {
-			$settings['influxdb_host'] = $endpoint['host'];
-			$settings['influxdb_port'] = $endpoint['port'];
-			break;
-		}
-	}
+$config = new Config();
+
+if ($config->hasRelationship('influxtimedb')) {
+    $db = $config->credentials('influxtimedb');
+    $host = $db['host'];
+    $port = $db['port'];
+    $token = $db['api_token'];
+    $org = $db['org'];
+    $bucket = $db['bucket'];
 }
 ```
 
 ## Exporting data
 
-InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influxd/inspect/).
-To gain access to the server from your local machine open an SSH tunnel with the Platform.sh CLI:
+To export your data from InfluxDB:
 
-```bash
-platform tunnel:open
-```
+1. Install the [influx-cli](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
+2. Gain access to the server from your local machine with the [Platform.sh CLI](../administration/cli/_index.md):
 
-That opens an SSH tunnel to all services on your current environment and produce output like the following:
+	```bash
+	platform tunnel:open
+	```
 
-```bash
-SSH tunnel opened on port 30000 to relationship: influxtimedb
-```
+	That command opens an SSH tunnel to all services on your current environment and produces output like:
 
-The port may vary in your case.
-Then run InfluxDB's export commands as desired.
+	```bash
+	SSH tunnel opened on port {{<variable "PORT" >}} to relationship: influxtimedb
+	```
+3. Get the username and password [for your service](../development/variables/use-variables.md#access-variables-in-a-shell) with `echo $PLATFORM_RELATIONSHIPS | base64 --decode`.
+4. Generate an [API token](https://docs.influxdata.com/influxdb/cloud/security/tokens/create-token/).
+5. Run InfluxDB's CLI export command and [adapt it as desired](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
-```bash
-influx_inspect export -compress
-```
+	``` bash
+	influx backup --host http://localhost:{{<variable "PORT" >}} --token {{<variable "YOUR_INFLUXDB_API_TOKEN" >}}
+	```
