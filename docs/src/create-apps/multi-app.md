@@ -8,12 +8,12 @@ You might have multiple apps that are closely related.
 For example, you might have a CMS backend for your content or other APIs and a frontend to display it all.
 In such cases, you can create multiple apps within a single project so they can share data.
 
-Note that to have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../overview/pricing/_index.md).
+Note that to have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
 {{< note >}}
 
-This page only applies to Grid projects.
-To set up multiple apps in Dedicated environments, contact your sales representative.
+This page applies to Grid and {{% names/dedicated-gen-3 %}} projects.
+To set up multiple apps in {{% names/dedicated-gen-2 %}} environments, contact your sales representative.
 
 {{< /note >}}
 

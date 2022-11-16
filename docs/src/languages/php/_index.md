@@ -6,9 +6,9 @@ layout: single
 
 ## Supported versions
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "php" %}}
 
@@ -18,9 +18,9 @@ Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP
 
 {{% deprecated-versions %}}
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ## Alternate start commands
 
@@ -111,11 +111,60 @@ which runs `composer --no-ansi --no-interaction install --no-progress --prefer-d
 Note that by default, all PHP containers include the latest Composer 1.x release.
 If you wish to use Composer 2.x, add it as a `dependency`:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php:
         composer/composer: '^2'
 ```
+
+### Changing the flavor
+
+To not use the `composer` build flavor, such as to run your own Composer command,
+set the build flavor to `none` and add the command to the start of your `build` hook.
+The following example installs Composer dependencies but not development dependencies:
+
+```yaml {location=".platform.app.yaml"}
+build:
+    flavor: none
+
+hooks:
+    build: |
+        set -e
+        composer install --no-interaction --no-dev
+```
+
+You can achieve the same thing with the default build flavor and the `COMPOSER_NO_DEV` variable.
+Add the variable to your Production environment:
+
+{{< codetabs >}}
+---
+title=Using the CLI
+highlight=false
+file=none
+---
+
+Run a command like the following:
+
+```bash
+platform variable:create --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} --level environment --name COMPOSER_NO_DEV --value 1 --prefix env --json false --sensitive false --enabled true --inheritable false --visible-build false --visible-runtime false
+```
+<--->
+---
+title=In the Console
+highlight=false
+file=none
+---
+
+1. Navigate to your Production environment.
+2. Click {{< icon settings >}} **Settings**.
+3. Click **Variables**.
+4. Click **+ Add variable**.
+5. Fill in `env:COMPOSER_NO_DEV` for the name.
+6. Fill in `1` for the value.
+7. Make sure **Make inheritable** is *not* selected.
+8. Click **Add variable**.
+
+{{< /codetabs >}}
 
 ## OPcache preloading
 

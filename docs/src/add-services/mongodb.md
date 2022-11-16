@@ -2,8 +2,8 @@
 title: "MongoDB (Database service)"
 weight: 6
 description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://docs.mongodb.com/manual/\">MongoDB's own documentation</a>."
-
 sidebarTitle: "MongoDB"
+premium: true
 ---
 
 {{% frameworks %}}
@@ -19,16 +19,17 @@ sidebarTitle: "MongoDB"
 
 ### Enterprise edition
 
-{{< add-on-feature feature="MongoDB Enterprise" >}}
+{{< premium-features/add-on feature="MongoDB Enterprise" >}}
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% deprecated-versions %}}
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} |
+
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}} |
 
 ### Legacy edition
 
@@ -52,7 +53,7 @@ If you want to experiment with a later version without committing to it use a no
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "mongodb" >}}
 
@@ -107,6 +108,22 @@ highlight=python
 ---
 
 {{< /codetabs >}}
+
+## Access the service directly
+
+You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
+Get the `host` from your [relationship](#relationship).
+Then run the following command:
+
+```bash
+mongo {{< variable "HOST" >}}
+```
+
+With the example value, that would be the following:
+
+```bash
+mongo mongodb.internal
+```
 
 ## Exporting data
 

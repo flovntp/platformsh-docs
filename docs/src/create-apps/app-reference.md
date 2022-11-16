@@ -63,7 +63,7 @@ These are used in the format `runtime:version`:
 
 ## Sizes
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../overview/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.
 
 By default, resource sizes (CPU and memory) are chosen automatically for an app
@@ -88,7 +88,7 @@ The total resources allocated across all apps and services can't exceed what's i
 Containers in development environments don't follow the `size` specification.
 Application containers are set based on the plan's setting for **Environments application size**.
 The default is **{{< partial "plans/default-dev-env-size" >}}**, but you can increase it by editing your plan.
-(Service containers in development environments are always set to {{ partial "plans/default-dev-env-size" }} size.)
+(Service containers in development environments are always set to {{< partial "plans/default-dev-env-size" >}} size.)
 
 ## Relationships
 
@@ -210,7 +210,7 @@ So it can be useful for things like clearing ephemeral cache.
 web:
     commands:
         start: 'redis-cli -h redis.internal flushall; sleep infinity'
-        # For a Dedicated environment use:
+        # For a {{% names/dedicated-gen-2 %}} environment use:
         # start: 'redis-cli flushall ; sleep infinity'
 ```
 
@@ -410,7 +410,7 @@ You can also define and access more [complex values](../development/variables/us
 
 ## Firewall
 
-{{< tiered-feature "Elite and Enterprise" >}}
+{{< premium-features/tiered "Elite and Enterprise" >}}
 
 Set limits in outbound traffic from your app with no impact on inbound requests.
 
@@ -437,11 +437,8 @@ firewall:
 
 ### Support for rules
 
-Where outbound rules for firewalls are supported:
-
-| Grid      | Dedicated                                     | Dedicated Generation 3 |
-| --------- | --------------------------------------------- | ---------------------- |
-| Supported | Supported (contact support for configuration) | Supported              |
+Where outbound rules for firewalls are supported in all environments.
+For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
 
 ### Multiple rules
 
@@ -617,7 +614,7 @@ The names must be unique.
 
 If an application defines both a `web` instance and `worker` instances, cron jobs run only on the `web` instance.
 
-See how to [get cron logs](../increase-observability/logs.md#container-logs).
+See how to [get cron logs](../increase-observability/logs/access-logs.md#container-logs).
 
 The following table shows the properties for each job:
 
@@ -701,7 +698,7 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](../dedicated/overview/backups.md) are running.
+Crons are also paused while activities such as [backups](../dedicated-gen-2/overview/backups.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
@@ -830,7 +827,6 @@ So in the following example, if your app tries to access `api.example.com`, it's
 
 ```yaml {location=".platform.app.yaml"}
 additional_hosts:
-  extensions:
     api.example.com: "192.0.2.23"
     web.example.com: "203.0.113.42"
 ```

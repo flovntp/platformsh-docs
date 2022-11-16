@@ -1,6 +1,6 @@
 ---
 title: Send email
-weight: 8
+weight: 9
 sidebarTitle: Email
 description: Send email from your Platform.sh environments.
 ---
@@ -25,14 +25,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project with the given environment.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>Outgoing emails</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Select the <strong>Email sending</strong> checkbox.</li>
-</ol>
+- Select the project with the given environment.
+- From the **Environment** menu, select the environment.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **Outgoing emails**, click **Edit {{< icon chevron >}}**.
+- Select the **Email sending** checkbox.
 
 To turn off outgoing email, clear the **Email sending** checkbox.
 
@@ -67,7 +64,7 @@ Add the following `TXT` record to your domain's DNS records:
 
 ## 3. (Optional) Validate your email
 
-{{< tiered-feature "Enterprise and Elite" >}}
+{{< premium-features/tiered "Enterprise and Elite" >}}
 
 If you're on an Enterprise or Elite plan,
 you can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.

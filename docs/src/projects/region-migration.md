@@ -14,7 +14,7 @@ You can also change the project's region after it's created.
 ## Why migrate between regions
 
 - Different data centers are located in different geographic areas.
-  You may want your site close to the your users for improved performance.
+  You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
 - Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.
   In particular, the `us` and `eu` regions don't currently offer the following features:
@@ -23,8 +23,8 @@ You can also change the project's region after it's created.
   - [Outbound firewalls](../create-apps/app-reference.md#firewall)
   - [Network Storage service](../add-services/network-storage.md)
   - [Deploy hook activity logs and SSH during deploy hooks](../create-apps/hooks/hooks-comparison.md#deploy-hook)
-  - [Cron activity logs](../increase-observability/logs.md)
-  - [Live backups](../administration/backup-and-restore.md#live-backups)
+  - [Cron activity logs](../increase-observability/logs/access-logs.md)
+  - [Live backups](../environments/backup.md#live-backups)
   - [Infrastructure metrics](../increase-observability/metrics/_index.md)
   - [Paused crons](../create-apps/app-reference.md#paused-crons)
   - [Static content during deployments](https://platform.sh/blog/2022/upcoming-improvements-deployment-caching-crons)
@@ -110,7 +110,7 @@ platform mount:upload
 ```
 
 See more options on [how to export files](../tutorials/exporting.md#downloading-files)
-and [how to import files](../tutorials/migrating.md#import-your-files).
+and [how to import files](../tutorials/migrating.md#6-import-files).
 
 ## 5. Copy data from services
 

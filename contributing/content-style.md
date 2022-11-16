@@ -15,6 +15,7 @@ from Platform.sh engineers to people from the community.
   - [About the audience](#about-the-audience)
   - [Style defaults](#style-defaults)
   - [Address the reader directly](#address-the-reader-directly)
+  - [Aim for neutral text](#aim-for-neutral-text)
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
@@ -76,6 +77,17 @@ Only use `please` if you're asking for something that benefits Platform.sh
 or inconveniences the reader.
 
 So it's OK in phrases like `If you get an error, please open a support ticket.`
+
+## Aim for neutral text
+
+In general, aim to present facts without inserting too much opinion.
+Aim for an authoritative tone, but not one that condescends to readers.
+Don't use phrases that exaggerate.
+
+Use                                             | Avoid
+------------------------------------------------|-------
+Be careful not to break anything                | Of course, you naturally have to avoid breaking anything
+Making this small change can have large effects | Surprisingly, making this tiny change can have huge effects
 
 ## Use inclusive language
 
@@ -227,8 +239,8 @@ For the second type, use example values based on the following table:
 | Project ID         | `abcdefgh1234567` |
 | Other IDs          | Half a string of letters starting from `a` and half numbers from `1`, similarly to the project ID. So for an ID with 8 characters, use `abcd1234`. |
 | Region             | `eu`, unless there is a specific reason not to. |
-| Branch/environment | On Grid: `main` for the default branch/environment and `feature` for a comparison branch/environment. On Dedicated: `production` for the default and `dev` for a second. |
-| Environment URL    | By combining the above standards, the default for Grid non-default environments is: `feature.abcd123.abcdefgh1234567.eu.platform.sh`. |
+| Branch/environment | On Grid: `main` for the default branch/environment and `feature` for a comparison branch/environment. On Dedicated Gen 2: `production` for the default and `dev` for a second. |
+| Environment URL    | By combining the above standards, the default for Grid non-default environments is: `https://feature-abcd123-abcdefgh1234567.eu.platformsh.site`. |
 
 ## Format screenshots for sustainability
 

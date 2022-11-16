@@ -23,13 +23,10 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project with the given environment.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment.</li>
-  <li>Click {{< icon more >}} <strong>More</strong>.</li>
-  <li>Click <strong>Redeploy</strong>.</li>
-</ol>
+- Select the project with the given environment.
+- From the **Environment** menu, select the environment.
+- Click {{< icon more >}} **More**.
+- Click **Redeploy**.
 
 <--->
 
@@ -125,7 +122,7 @@ Typical causes and potential solutions include:
   * Check your `web.commands.start` entry or your `passthru` configuration.
 * The amount of traffic coming to your site exceeds the processing power of your application.
   * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-  * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
+  * Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
 * Certain code paths in your application are too slow and timing out.
   * Check your code is running smoothly.
   * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
@@ -226,7 +223,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 * The deployment is blocked by a long running cron job in the environment.
 * The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs.md#activity-logs).
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -252,7 +249,7 @@ Here are a few tips that can help you find the exact cause.
 ### Check for errors in the logs
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
-Investigate [each log](../increase-observability/logs.md#container-logs) and fix any errors you find.
+Investigate [each log](../increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 

@@ -8,6 +8,7 @@ keywords:
 When developing your site, you might want to hide your development environments from outside viewers.
 Or you may find you have performance issues from [excessive bot access](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
 You can control access either with a username and password or by allowing/denying specific IP addresses or networks.
+This setting applies to the entire environment.
 
 The settings for a specific environment are inherited by all of its children.
 So if you have a `staging` environment and you [branch environments from it](../other/glossary.md#branch),
@@ -29,16 +30,13 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to add login details.</li>
-  <li>From the <strong>Environment</strong> menu, select an environment.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>HTTP access control</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Click <strong>+ Add Login</strong>.</li>
-  <li>Enter the username (login) and password into the given fields.</li>
-  <li>Click <strong>Save</strong>.</li>
-</ol>
+- Select the project where you want to add login details.
+- From the **Environment** menu, select an environment.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **HTTP access control**, click **Edit {{< icon chevron >}}**.
+- Click **+ Add Login**.
+- Enter the username (login) and password into the given fields.
+- Click **Save**.
 
 <--->
 ---
@@ -86,15 +84,12 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Select the project where you want to control access.</li>
-  <li>From the <strong>Environment</strong> menu, select the environment to control.</li>
-  <li>Click {{< icon settings >}} <strong>Settings</strong>.</li>
-  <li>In the row with <strong>HTTP access control</strong>, click <strong>Edit {{< icon chevron >}}</strong>.</li>
-  <li>Enter the IP addresses or ranges into the <strong>IP addresses</strong> field. Put one address or range per line, followed by a space and then <code>allow</code> or <code>deny</code>.</li>
-  <li>Click <strong>Save</strong>.</li>
-</ol>
+- Select the project where you want to control access.
+- From the **Environment** menu, select the environment to control.
+- Click {{< icon settings >}} **Settings**.
+- In the row with **HTTP access control</strong>, click <strong>Edit {{< icon chevron >}}**.
+- Enter the IP addresses or ranges into the **IP addresses** field. Put one address or range per line, followed by a space and then `allow` or `deny`.
+- Click **Save**.
 
 <--->
 ---

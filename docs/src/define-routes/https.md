@@ -14,21 +14,11 @@ The Let’s Encrypt TLS Certificates are:
 - automatically renewed 28 days before expiration
 
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
-As no new build is required the process should take at most a few seconds.
+As no code changes are made, the build image is reused and build books are not run.
 The deploy and post-deploy hook are run during this process.
-
-{{< note >}}
-Platform.sh provides managed service and runtime containers for your projects --
-security and system upgrades to those containers are applied automatically by us in the background.
-Whether or not an upgrade needs to be applied is judged during redeploys, but also during this renewal process.
+During the redeploy, security and system upgrades are automatically applied to your containers when required.
 That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers.
-In those cases, containers are rebooted and the process takes a little longer. 
-{{< /note >}}
-
-If you are using a custom TLS certificate, seven days before it expires
-Platform.sh issues a Let's Encrypt certificate and replaces the custom certificate with it to avoid interruption in service.
-If you wish to continue using the custom certificate,
-replace it with an updated certificate more than seven days before it expires.
+In those cases, containers are rebooted and the process takes a little longer.
 
 {{< note >}}
 TLS certificates are often still called SSL certificates.
@@ -40,7 +30,7 @@ In practice, they mean the same thing today, but TLS is the more correct term.
 
 {{% lets_encrypt_limitations %}}
 
-If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from a [third-party issuer](../domains/steps/tls.md).
 Alternatively, consider splitting your project up into multiple Platform.sh projects.
 
 ## Using HTTPS
@@ -256,7 +246,7 @@ If you include them in your [routes definition](./_index.md),
 Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
-more information can be found in out go live [step-by-step guide](../gettingstarted/next-steps/going-live/configure-dns.md).
+more information can be found in out go live [step-by-step guide](../domains/steps/_index.md).
 
 Sometimes, that verification fails, which results in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`

@@ -12,17 +12,21 @@ Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
-[Dedicated environments](../../dedicated/overview/_index.md):
-each of the three hosts in your [N+1 configuration](../../dedicated/architecture/_index.md)
+[{{% names/dedicated-gen-2 %}} environments](../../dedicated-gen-2/overview/_index.md):
+each of the three hosts in your [N+1 configuration](../../dedicated-gen-2/architecture/_index.md)
 and their average for the Production environment.
+Metrics aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment),
+but are available for Grid environments (such as your development environments).
 
-![A screenshot of what the metrics dashboard displays for Dedicated environments](/images/metrics/all-dedicated.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")
 
-[Dedicated Generation 3 environments](../../dedicated-gen-3/overview.md): each of the three hosts and their average.
+[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/overview.md): each of the three hosts and their average.
+These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
-![A screenshot of what the metrics dashboard displays for Dedicated Generation 3 environments](/images/metrics/all-dedicated-gen3.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/all-dedicated-gen3.png "0.45")
 
 Grid environments: your service, app, and worker containers.
+These metrics are available for all of your Grid environments.
 
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
@@ -34,7 +38,7 @@ All of the graphs show labels for the following thresholds:
 
 * Usage that crosses _80%_ results in a **warning** label.
 * Usage that crosses _90%_ results in a **critical** label.
-* On Dedicated Generation 3 and Grid environments, usage that crosses _100%_ results in a **burst** label.
+* On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
 
   The burst capability is available for containerized environments
   and allows a container to get more resources than it's allocated.
@@ -47,31 +51,33 @@ The default thresholds aim to give you an idea of when your hosts/containers are
 The impact differs based on your specific apps and service.
 The values of the thresholds is purely informational.
 
-#### Dedicated environments
+#### {{% names/dedicated-gen-2 %}} environments
 
-For Dedicated environments, the thresholds are set for each host.
+For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each host.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
-#### Dedicated Generation 3 environments
+#### {{% names/dedicated-gen-3 %}} environments
 
-For Dedicated Generation 3 environments, the thresholds are set for each host.
-If the resources are high and hovering close to the 100% threshold,
-you might want to consider:
+For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+If you have one container in a temporary burst state but your host still has plenty of available resources,
+it might not be an issue as long as the site is functioning properly.
+Burst allows your container to use additional resources when they aren't needed elsewhere.
+
+If you have a container in a prolonged burst state, you might want to consider:
+
+* [Optimizing your code](../integrate-observability/_index.md)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
-If your containers are in a prolonged burst state,
-review your configuration or plan size because burst isn't guaranteed for long periods.
-If the burst threshold is triggered for short, infrequent activities,
-it might not be an issue as long as the site is functioning properly.
-Burst allows your container to use additional resources when they aren't required on the container's host.
+You can reallocate your existing resources if other containers have resources they aren't using.
+
+If you have multiple containers in a burst state, review your configuration or plan size.
 
 #### Grid environments
   
@@ -82,7 +88,7 @@ you might want to consider:
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
 * Changing your [app size](../../create-apps/app-reference.md#sizes)
   or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../overview/pricing/_index.md)
+* [Increasing your plan](../../administration/pricing/_index.md)
 
 If your containers are in a prolonged burst state,
 review your configuration or plan size because burst isn't guaranteed for long periods.

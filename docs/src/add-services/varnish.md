@@ -1,7 +1,6 @@
 ---
 title: Varnish
 weight: 13
-mermaid: true
 ---
 
 Varnish is a popular HTTP proxy server, often used for caching.
@@ -11,9 +10,9 @@ But you can include Varnish as a service.
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "varnish" %}}
 
@@ -22,15 +21,13 @@ But you can include Varnish as a service.
 All incoming requests go through the [standard router](../define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
-<!-- vale off -->
-{{< mermaid >}}
+``` mermaid
 graph LR
     A(Request) -->B(Router)
     B --> C{Varnish}
     C -->D[App 1]
     C -->E[App 2]
-{{< /mermaid >}}
-<!-- vale on -->
+```
 
 ## Usage example
 
@@ -248,7 +245,7 @@ To access the stats, create a **separate app** with a relationship *to* Varnish,
 Define an [app configuration](../create-apps/app-reference.md) similar to the following:
 
 ```yaml {location=".platform.app.yaml"}
-name: statsApp
+name: stats-app
 type: "php:8.1"
 
 build:
@@ -269,7 +266,7 @@ The following paths are available:
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app statsApp`
-   (replace `statsApp` with the name you gave the app).
+1. Connect to your stats app [using SSH](../development/ssh/_index.md): `platform ssh --app stats-app`
+   (replace `stats-app` with the name you gave the app).
 2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl <HOST>:<PORT>/stats`, replacing `<HOST>` and `<PATH>` with the values from Step 2.

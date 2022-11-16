@@ -21,9 +21,9 @@ If your app does this regularly, a local mount is more effective.
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}} |
 
 {{% image-versions-legacy "network-storage" %}}
 
@@ -39,9 +39,9 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{% deprecated-versions %}}
 
-| Grid | Dedicated | Dedicated Generation 3 |
-| ---- | --------- | ---------------------- |
-|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} |
+| Grid | {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|------|-------------------------------|------------------------------ |
+|  {{< image-versions image="network-storage" status="deprecated" environment="grid" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}} | {{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}} |
 
 {{% legacy-regions featureIntro="The Network Storage service" featureShort="the service" %}}
 
@@ -103,7 +103,7 @@ For example, you can define a network storage service:
 
 ```yaml {location=".platform/services.yaml"}
 files:
-    type: network-storage:1.0
+    type: network-storage:2.0
     disk: 2048
 ```
 
@@ -160,7 +160,7 @@ For example, the following `.platform.app.yaml` file (fragment) keeps Drupal fil
 
 ```yaml
 name: 'app'
-type: 'php:7.2'
+type: 'php:8.1'
 
 relationships:
     database: 'db:mysql'

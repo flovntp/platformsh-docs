@@ -10,9 +10,12 @@ layout: single
 
 ### OpenJDK versions:
 
-| Grid and Dedicated Generation 3 | Dedicated |
-|---------------------------------|-----------|
-|  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
+| Grid and {{% names/dedicated-gen-3 %}} | {{% names/dedicated-gen-2 %}} |
+|----------------------------------------|------------------------------ |
+|  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated-gen-2" >}} |
+
+These versions refer to the headless packages of OpenJDK.
+To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
 
 {{% image-versions-legacy "java" %}}
 
@@ -29,6 +32,28 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
+
+### Manage Maven versions
+
+Java containers come with a version of Maven already installed.
+You may need to use a specific different version to manage your project.
+If the version you need differs from the version on your container, you can install the specific version that you need.
+
+Add something like the following to your [app configuration](../../create-apps/_index.md):
+
+```yaml {location=".platform.app.yaml"}
+variables:
+    env:
+        MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+
+hooks:
+    build: |
+      curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+      tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+      export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+      mvn --version
+      mvn clean package
+```
 
 ## Other JVM languages
 

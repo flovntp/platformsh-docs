@@ -12,6 +12,12 @@ aliases:
 An environment that's deployed.
 See how to [deactivate an environment](../environments/deactivate-environment.md).
 
+## Apex domain
+
+An apex domain is a domain name that doesn't include a subdomain.
+
+For example, `example.com` is an apex domain and `www.example.com` is a subdomain.
+
 ## Branch
 
 Branching an environment means creating a new branch in the Git repository and an exact copy of that environment.
@@ -42,14 +48,11 @@ file=none
 highlight=false
 ---
 
-<!--This is in HTML to get the icon not to break the list. -->
-<ol>
-  <li>Navigate to the environment you want to branch from.</li>
-  <li>Click {{< icon branch >}} <strong>Branch</strong>.</li>
-  <li>Enter a name for the new branch.</li>
-  <li>Select which environment type it should be.</li>
-  <li>Click <strong>Create branch</strong>.</li>
-</ol>
+- Navigate to the environment you want to branch from.
+- Click {{< icon branch >}} **Branch**.
+- Enter a name for the new branch.
+- Select which environment type it should be.
+- Click **Create branch**.
 
 <--->
 ---
@@ -83,13 +86,13 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
-## Dedicated
+## {{% names/dedicated-gen-2 %}}
 
-[Dedicated environments](../dedicated/overview/_index.md) are managed virtual machine clusters with triple redundancy.
+[{{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/_index.md) are managed virtual machine clusters with triple redundancy.
 Their dedicated architecture makes them differ from [Grid environments](#grid).
-See a [list of current differences](../dedicated/overview/grid.md).
+See a [list of differences](../dedicated-gen-2/overview/grid.md).
 
-These differences should disappear with [Dedicated Gen 3](../dedicated-gen-3/overview.md)
+These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3/overview.md).
 
 ## Deprecated versions
 
@@ -118,7 +121,7 @@ You can also configure them manually.
 
 Grid environments are standard for Professional plans.
 They run on shared infrastructure.
-This architecture makes them different from [Dedicated environments](#dedicated).
+This architecture makes them different from [{{% names/dedicated-gen-2 %}} environments](#dedicated-gen-2).
 
 ## Inactive environment
 
@@ -161,7 +164,7 @@ Synchronizing an environment means copying changes from a parent into a child en
 and then redeploying the child environment.
 You can synchronize only the code, only the data (databases, files), or both.
 
-Be aware that sync has the same process and same concerns as [backups](../administration/backup-and-restore.md#backups-and-downtime).
+Be aware that sync has the same process and same concerns as [backups](../environments/backup.md#backups-and-downtime).
 
 Sync is only available if your branch has no unmerged commits and can be fast-forwarded.
 
